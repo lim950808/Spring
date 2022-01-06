@@ -29,8 +29,7 @@ public class ApplicationConfig {
 		locations[0] = new ClassPathResource("admin3.properties");
 		locations[1] = new ClassPathResource("sub_admin3.properties");
 		//System.out.println("PropertySourcesPlaceholderConfigurer1 adminId->" + adminId);
-		configurer.setLocations(locations);
-		
+		configurer.setLocations(locations);		
 		return configurer;
 	}
 	
