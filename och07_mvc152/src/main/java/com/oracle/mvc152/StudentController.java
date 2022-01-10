@@ -21,7 +21,7 @@ public class StudentController {
 		StudentValidator validator = new StudentValidator();
 		validator.validate(student, result);
 		if(result.hasErrors()) {
-			System.out.println("StudentVvalidator 오류발생...");
+			System.out.println("StudentValidator 오류발생...");
 			page = "createPage";
 		}
 		return page;
