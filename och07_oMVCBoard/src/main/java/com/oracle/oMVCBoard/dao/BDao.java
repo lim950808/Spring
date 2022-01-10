@@ -72,7 +72,7 @@ public class BDao {
 		return dtos;
 	}
 
-	public BDto contentView(String bId) {
+	public BDto contentView(String strId) {
 		BDto dto = null;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -84,12 +84,11 @@ public class BDao {
 			
 			String query = "SELECT * FROM mvc_board where bId = ?";
 			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, bId);
+			preparedStatement.setInt(1, Integer.parseInt(strId));
 			resultSet = preparedStatement.executeQuery();
 			
-			while(resultSet.next()) {
-				
-				// int bId = resultSet.getInt("bId");
+			while(resultSet.next()) {	
+				int bId = resultSet.getInt("bId");
 				String bName = resultSet.getString("bName");
 				String bTitle = resultSet.getString("bTitle");
 				String bContent = resultSet.getString("bContent");
@@ -99,8 +98,8 @@ public class BDao {
 				int bStep = resultSet.getInt("bStep");
 				int bIndent = resultSet.getInt("bIndent");
 				
-				BDto dtos = new BDto(
-						Integer.parseInt(bId),
+				dto = new BDto(
+						bId,
 						bName,
 						bTitle,
 						bContent,
@@ -110,14 +109,15 @@ public class BDao {
 						bStep,
 						bIndent
 						);
-				return dtos;
+				
+				//return dtos;
 			}
 				
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return dto;
 	}
 	
 	
