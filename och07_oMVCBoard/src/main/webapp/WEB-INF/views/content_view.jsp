@@ -15,7 +15,7 @@
 				<td> 번호</td><td> ${mvc_board.bId } </td>
 			</tr>
 			<tr>
-				<td> 히트</td><td> ${mvc_board.bHit } </td>
+				<td> 조회수</td><td> ${mvc_board.bHit } </td>
 			</tr>
 			<tr>
 				<td> 이름</td><td><input type="text" name="bName" value="${mvc_board.bName }"></td>

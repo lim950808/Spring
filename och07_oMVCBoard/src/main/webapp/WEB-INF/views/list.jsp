@@ -18,7 +18,7 @@
 				<td>${mvc_board.bId }</td>
 				<td>${mvc_board.bName }</td>
 				<td>
-					<c:forEach begin="1" end="${mvc_board.bIndent }">-</c:forEach>
+					<c:forEach begin="1" end="${mvc_board.bIndent }">↳</c:forEach>
 					<a href="content_view?bId=${mvc_board.bId }">${mvc_board.bTitle }</a>
 				</td>
 				<td>${mvc_board.bDate }</td>
