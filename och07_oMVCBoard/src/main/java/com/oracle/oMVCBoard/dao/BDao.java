@@ -21,6 +21,7 @@ public class BDao {
 	public BDao() {
 		
 		try {
+			//JNDI
 			Context context = new InitialContext();
 			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/OracleDB");
 		} catch (Exception e) {
@@ -65,7 +66,7 @@ public class BDao {
 				dtos.add(dto);
 			}
 			
-		} catch (SQLException e) {
+		}catch (SQLException e) {
 			System.out.println("list dataSource SQLException-->" + e.getMessage());
 		}
 		
@@ -73,6 +74,10 @@ public class BDao {
 	}
 
 	public BDto contentView(String strId) {
+		
+		//Content누를때마다 히트수 증가 시키는부분
+		upHit(strId);
+		
 		BDto dto = null;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -98,27 +103,46 @@ public class BDao {
 				int bStep = resultSet.getInt("bStep");
 				int bIndent = resultSet.getInt("bIndent");
 				
-				dto = new BDto(
-						bId,
-						bName,
-						bTitle,
-						bContent,
-						bDate,
-						bHit,
-						bGroup,
-						bStep,
-						bIndent
-						);
-				
-				//return dtos;
+				dto = new BDto(bId, bName, bTitle, bContent, bDate, bHit, bGroup, bStep, bIndent);
+
 			}
 				
 		}catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
+		}finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			}catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}	
 		return dto;
 	}
-	
+
+	private void upHit(String strId) {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			connection = dataSource.getConnection();
+            String query = "UPDATE mvc_board SET bHit = bHit + 1 WHERE bId = ?";
+            preparedStatement = (PreparedStatement) connection.prepareStatement(query);
+            preparedStatement.setString(1, strId);
+            int rn = preparedStatement.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+            try {
+                if(preparedStatement != null) preparedStatement.close();
+                if(connection != null) connection.close();
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+		
+	}
 	
 }
