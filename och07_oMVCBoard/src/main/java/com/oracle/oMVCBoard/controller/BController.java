@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.oracle.oMVCBoard.command.BCommand;
 import com.oracle.oMVCBoard.command.BContentCommand;
+import com.oracle.oMVCBoard.command.BDeleteCommand;
 import com.oracle.oMVCBoard.command.BListCommand;
 import com.oracle.oMVCBoard.command.BModifyCommand;
 import com.oracle.oMVCBoard.command.BReplyCommand;
@@ -89,6 +90,17 @@ public class BController {
 		
 		model.addAttribute("request", request);
 		command = new BReplyCommand();
+		command.execute(model);
+		
+		return "redirect:list";
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(HttpServletRequest request, Model model) {
+		System.out.println("delete()");
+		
+		model.addAttribute("request", request);
+		command = new BDeleteCommand();
 		command.execute(model);
 		
 		return "redirect:list";

@@ -299,5 +299,30 @@ public class BDao {
             }
         }
 	}
+
+	public void delete(String bId) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			connection = dataSource.getConnection();
+			String query = "DELETE FROM mvc_board WHERE bId = ?";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, Integer.parseInt(bId));
+			
+			int rn = preparedStatement.executeUpdate();
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {		
+				if(preparedStatement != null) preparedStatement.close();
+                if(connection != null) connection.close();
+			}catch (Exception e2) {
+				e2.printStackTrace();
+			}	
+		}
+		
+	}
 	
 }
