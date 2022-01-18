@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="EmpDao">
+	<select id="tkEmpTotal" resultType="int">
+		SELECT count(*) FROM emp
+	</select>
+	<!-- https://gent.tistory.com/170 -->
+	<select id="tkEmpListAll3" parameterType="Emp" resultType="Emp">
+		SELECT *
+		FROM (
+        		SELECT rownum rn, a.*
+        		FROM (SELECT * FROM emp ORDER BY empno) a
+     		 )
+		WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	
+	
+</mapper>
