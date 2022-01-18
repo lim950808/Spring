@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 import com.oracle.oBootMybatis03.model.Emp;
 import com.oracle.oBootMybatis03.service.EmpService;
@@ -35,5 +38,50 @@ public class EmpController {
 		model.addAttribute("total", total);
 		
 		return "list";
+	}
+	
+	@GetMapping(value = "detail")
+	public String detail(int empno, Model model) {
+		//Emp emp = es.detail(emp)
+		//Dao -> ed.detail(emp)
+		//mapper --> tkEmpSelOne, empno
+		System.out.println("EmpConotroller Start detail...");
+		Emp emp =es.detail(empno);
+		model.addAttribute("emp", emp);
+		
+		return "detail";
+	}
+	
+	@GetMapping(value = "updateForm")
+	public String updateForm(int empno, Model model) {
+		System.out.println("EmpController Start updateForm...");
+		Emp emp = es.detail(empno);
+		model.addAttribute("emp", emp);
+		
+		return "updateForm";
+	}
+	
+	@PostMapping(value = "update")
+	public String update(Emp emp, Model model) {
+		int uptCnt = es.update(emp);
+		System.out.println("es.update(emp) Count-->" + uptCnt);
+		model.addAttribute("uptCnt", uptCnt);				// Test Controller간 Date 전달
+		model.addAttribute("kk3", "Message Test");	// Test Controller간 Date 전달
+		
+		//return "redirect:list";
+		return "forward:list";
+	}
+	
+	@RequestMapping(value = "writeForm")
+	public String writeForm(Model model) {
+		//Emp emp = null;
+		//관리자 사번만 Get
+		List<Emp> empList = es.listManager();
+		System.out.println("EmpController writeForm list.size()->" + empList.size());
+		model.addAttribute("empMngList", empList); //emp Manager List
+//		List<Dept> deptList = es.deptSelect();
+//		model.addAttribute("deptList", deptList); //dept
+		
+		return "writeForm";
 	}
 }

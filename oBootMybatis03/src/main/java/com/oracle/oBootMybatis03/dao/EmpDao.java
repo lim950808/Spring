@@ -9,5 +9,12 @@ public interface EmpDao {
 	int total();
 
 	List<Emp> listEmp(Emp emp);
+
+	Emp detail(int empno);
+
+	int update(Emp emp);
+
+	List<Emp> listManager();
+
 	
 }

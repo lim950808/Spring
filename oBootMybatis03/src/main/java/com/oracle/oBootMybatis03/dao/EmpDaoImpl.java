@@ -41,4 +41,43 @@ public class EmpDaoImpl implements EmpDao {
 		return empList;
 	}
 
+	@Override
+	public Emp detail(int empno) {
+		System.out.println("EmpDaoImpl detail start...");
+		Emp emp = new Emp();
+		try {
+			//						  mapper ID	, Parameter
+			emp = session.selectOne("tkEmpSelOne", empno);
+			System.out.println("EmpDaoImpl detail getEname->" + emp.getEname());
+		}catch (Exception e) {
+			System.out.println("EmpDaoImpl detail Exception->" + e.getMessage());
+		}
+		return emp;
+	}
+
+	@Override
+	public int update(Emp emp) {
+		System.out.println("EmpDaoImpl detail start...");
+		int uptCnt = 0;
+		try {
+			uptCnt = session.update("TKempUpdate", emp);
+		}catch (Exception e) {
+			System.out.println("EmpDaoImpl update Exception->" + e.getMessage());
+		}
+		return uptCnt;
+	}
+
+	@Override
+	public List<Emp> listManager() {
+		List<Emp> empList = null;
+		System.out.println("EmpDaoImpl listManager Start...");
+		try {
+			//	emp 관리자만 Select				Naming Rule
+			empList = session.selectList("tkSelectManager");
+		}catch (Exception e) {
+			System.out.println("EmpDaoImpl listManager Exception->" + e.getMessage());
+		}
+		return empList;
+	}
+
 }

@@ -30,4 +30,31 @@ public class EmpServiceImpl implements EmpService {
 		return empList;
 	}
 
+	@Override
+	public Emp detail(int empno) {
+		System.out.println("EmpServiceImpl detail...");
+		Emp emp = null;
+		emp = ed.detail(empno);
+		return emp;
+	}
+
+	@Override
+	public int update(Emp emp) {
+		System.out.println("EmpServiceImpl update...");
+		int uptCnt = 0;
+		uptCnt = ed.update(emp);
+		return uptCnt;
+	}
+
+	@Override
+	public List<Emp> listManager() {
+		List<Emp> empList = null;
+		System.out.println("EmpServiceImpl listManager Start...");
+		empList = ed.listManager();
+		System.out.println("EmpServiceImpl listEmp empList.size()->" + empList.size());
+		return empList;
+		
+	}
+	
+
 }

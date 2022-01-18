@@ -18,8 +18,8 @@ public class Paging {
 		if(currentPage1 != null) {
 			this.currentPage = Integer.parseInt(currentPage1);
 		}
-		start = (currentPage - 1) * rowPage + 1; //시작시 1
-		end = start + rowPage - 1;				 //시작시 10
+		start = (currentPage - 1) * rowPage + 1; //시작시 1	11
+		end = start + rowPage - 1;				 //시작시 10	20
 		totalPage = (int) Math.ceil((double)total / rowPage); //시작시 2
 		startPage = currentPage - (currentPage - 1) % pageBlock; //시작시 1
 		endPage = startPage + pageBlock - 1;
