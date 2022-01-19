@@ -36,7 +36,7 @@
 		VALUES(#{empno}, #{ename}, #{job}, #{mgr}, #{hiredate}, #{sal}, #{comm}, #{deptno})
 	</select>
 	
-	<select id="deleteEmp" parameterType="Emp">
+	<select id="delete" parameterType="int">
 		DELETE FROM emp
 		WHERE empno=#{empno}
 	</select>
