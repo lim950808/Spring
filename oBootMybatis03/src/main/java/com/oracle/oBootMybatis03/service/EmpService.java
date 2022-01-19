@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.oracle.oBootMybatis03.model.Dept;
 import com.oracle.oBootMybatis03.model.Emp;
+import com.oracle.oBootMybatis03.model.EmpDept;
 
 public interface EmpService {
 
@@ -22,6 +23,8 @@ public interface EmpService {
 	int insert(Emp emp);
 
 	int delete(int empno);
+
+	List<EmpDept> listEmpDept();
 
 
 	

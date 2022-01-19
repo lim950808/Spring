@@ -36,9 +36,9 @@
 		VALUES(#{empno}, #{ename}, #{job}, #{mgr}, #{hiredate}, #{sal}, #{comm}, #{deptno})
 	</select>
 	
-	<select id="delete" parameterType="int">
+	<delete id="deleteEmp" parameterType="int">
 		DELETE FROM emp
 		WHERE empno=#{empno}
-	</select>
+	</delete>
 	
 </mapper>

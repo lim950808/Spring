@@ -8,7 +8,8 @@
 </head>
 <body>
 	<%
-		response.sendRedirect("list");
+		//response.sendRedirect("list");
+		response.sendRedirect("listEmpDept");
 	%>
 </body>
 </html>

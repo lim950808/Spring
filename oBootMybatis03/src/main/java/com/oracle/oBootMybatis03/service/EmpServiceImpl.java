@@ -9,6 +9,7 @@ import com.oracle.oBootMybatis03.dao.DeptDao;
 import com.oracle.oBootMybatis03.dao.EmpDao;
 import com.oracle.oBootMybatis03.model.Dept;
 import com.oracle.oBootMybatis03.model.Emp;
+import com.oracle.oBootMybatis03.model.EmpDept;
 
 @Service
 public class EmpServiceImpl implements EmpService {
@@ -86,6 +87,14 @@ public class EmpServiceImpl implements EmpService {
 		result = ed.delete(empno);
 		return result;
 	}
-	
 
+	@Override
+	public List<EmpDept> listEmpDept() {
+		List<EmpDept> empDeptList = null;
+		System.out.println("EmpServiceImpl listEmpDept Start...");
+		empDeptList = ed.listEmpDept();
+		System.out.println("EmpServiceImpl listEmpDept empDeptList.size()->" + empDeptList.size());
+		return empDeptList;
+	}
+	
 }

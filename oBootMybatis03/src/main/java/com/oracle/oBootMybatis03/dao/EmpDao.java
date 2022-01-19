@@ -3,6 +3,7 @@ package com.oracle.oBootMybatis03.dao;
 import java.util.List;
 
 import com.oracle.oBootMybatis03.model.Emp;
+import com.oracle.oBootMybatis03.model.EmpDept;
 
 public interface EmpDao {
 
@@ -19,6 +20,8 @@ public interface EmpDao {
 	int insert(Emp emp);
 
 	int delete(int empno);
+
+	List<EmpDept> listEmpDept();
 
 	
 }
