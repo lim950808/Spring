@@ -8,14 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-
+import com.oracle.oBootMybatis03.model.Dept;
 import com.oracle.oBootMybatis03.model.Emp;
 import com.oracle.oBootMybatis03.service.EmpService;
 import com.oracle.oBootMybatis03.service.Paging;
 
 @Controller
 public class EmpController {
+	
 	@Autowired
 	private EmpService es;
 	
@@ -79,9 +81,43 @@ public class EmpController {
 		List<Emp> empList = es.listManager();
 		System.out.println("EmpController writeForm list.size()->" + empList.size());
 		model.addAttribute("empMngList", empList); //emp Manager List
-//		List<Dept> deptList = es.deptSelect();
-//		model.addAttribute("deptList", deptList); //dept
+		//부서(코드, 부서명)
+		List<Dept> deptList = es.deptSelect();
+		model.addAttribute("deptList", deptList); //dept
 		
 		return "writeForm";
+	}
+	
+	@RequestMapping(value = "write", method = RequestMethod.POST)
+	public String write(Emp emp, Model model) {
+		System.out.println("EmpController Start write...");
+		//System.out.println("emp.getHiredate->"+emp.getHiredate());
+		// Service, Dao , Mapper명[insertEmp] 까지 -> insert
+		int result = es.insert(emp);
+		if(result > 0) return "redirect:list";
+		else {
+			model.addAttribute("msg", "입력 실패 확인해보세요");
+			return "forward:writeForm";
+		}
+	}
+	
+	@GetMapping(value = "confirm")
+	public String confirm(int empno, Model model) {
+		Emp emp = es.detail(empno);
+		model.addAttribute("empno", empno);
+		if(emp != null) {
+			model.addAttribute("msg", "중복된 사번입니다.");
+			return "forward:writeForm";
+		}else {
+			model.addAttribute("msg", "사용 가능한 사번입니다.");
+			return "forward:writeForm";
+		}
+	}
+	
+	@RequestMapping(value = "delete")
+	public String delete(int empno, Model model) {
+		System.out.println("EmpController Start delete...");
+		int result = es.delete(empno);
+		return "redirect:list";
 	}
 }

@@ -5,13 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.oracle.oBootMybatis03.dao.DeptDao;
 import com.oracle.oBootMybatis03.dao.EmpDao;
+import com.oracle.oBootMybatis03.model.Dept;
 import com.oracle.oBootMybatis03.model.Emp;
 
 @Service
 public class EmpServiceImpl implements EmpService {
 	@Autowired
 	private EmpDao ed;
+	
+	@Autowired
+	private DeptDao dd;
 	
 	@Override
 	public int total() {
@@ -54,6 +59,32 @@ public class EmpServiceImpl implements EmpService {
 		System.out.println("EmpServiceImpl listEmp empList.size()->" + empList.size());
 		return empList;
 		
+	}
+
+	//부서 List
+	@Override
+	public List<Dept> deptSelect() {
+		List<Dept> deptList = null;
+		System.out.println("EmpServiceImpl deptSelect Start...");
+		deptList = dd.deptSelect();
+		System.out.println("EmpServiceImpl deptSelect deptList.size()->" + deptList.size());
+		return deptList;
+	}
+
+	@Override
+	public int insert(Emp emp) {
+		int result = 0;
+		System.out.println("EmpServiceImpl insert Start...");
+		result = ed.insert(emp);
+		return result;
+	}
+
+	@Override
+	public int delete(int empno) {
+		int result = 0;
+		System.out.println("EmpServiceImpl delete Start...");
+		result = ed.delete(empno);
+		return result;
 	}
 	
 

@@ -10,6 +10,7 @@ import com.oracle.oBootMybatis03.model.Emp;
 //@Repository를 하면 bean을 안 만들어도 됨.
 @Repository
 public class EmpDaoImpl implements EmpDao {
+	
 	@Autowired
 	private SqlSession session;
 	
@@ -78,6 +79,31 @@ public class EmpDaoImpl implements EmpDao {
 			System.out.println("EmpDaoImpl listManager Exception->" + e.getMessage());
 		}
 		return empList;
+	}
+
+	@Override
+	public int insert(Emp emp) {
+		int result = 0;
+		System.out.println("EmpDaoImpl insert start...");
+		try {
+			result = session.insert("insertEmp", emp);
+		}catch (Exception e) {
+			System.out.println("EmpDaoImpl insert Exception->" + e.getMessage());
+		}
+		return result;
+	}
+
+	@Override
+	public int delete(int empno) {
+		System.out.println("EmpDaoImpl delete start...");
+		int result = 0;
+		try {
+			result = session.delete("deleteEmp", empno);
+			System.out.println("EmpDaoImpl delete result->" + result);
+		}catch (Exception e) {
+			System.out.println("EmpDaoImpl delete Exception->" + e.getMessage());
+		}
+		return result;
 	}
 
 }

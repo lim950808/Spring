@@ -2,6 +2,7 @@ package com.oracle.oBootMybatis03.service;
 
 import java.util.List;
 
+import com.oracle.oBootMybatis03.model.Dept;
 import com.oracle.oBootMybatis03.model.Emp;
 
 public interface EmpService {
@@ -16,7 +17,11 @@ public interface EmpService {
 
 	List<Emp> listManager();
 
-//	List<Dept> deptSelect();
+	List<Dept> deptSelect();
+
+	int insert(Emp emp);
+
+	int delete(int empno);
 
 
 	
