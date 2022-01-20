@@ -15,6 +15,18 @@
 		WHERE rn BETWEEN #{start} AND #{end}
 	</select>
 	
+	<select id="tkEmpListAll" parameterType="Emp" resultType="Emp">
+		<![CDATA[
+		SELECT *
+		FROM (
+        		SELECT rownum rn, a.*
+        		FROM (SELECT * FROM emp ORDER BY empno) a
+     		 )
+		WHERE rn >= #{start} 
+		AND   rn <= #{end}
+		]]>
+	</select>
+	
 	<select id="tkEmpSelOne" parameterType="int" resultType="Emp">
 		SELECT * FROM emp WHERE empno = #{empno}
 	</select>

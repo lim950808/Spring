@@ -36,7 +36,8 @@ public class EmpDaoImpl implements EmpDao {
 		System.out.println("EmpDaoImpl listEmp Start...");
 		try {
 			//	Naming Rule					Map ID		 parameter
-			empList = session.selectList("tkEmpListAll3", emp); //selectList -> 여러건 조회
+			//empList = session.selectList("tkEmpListAll3", emp); //selectList -> 여러건 조회
+			empList = session.selectList("tkEmpListAll", emp);
 		}catch (Exception e) {
 			System.out.println("EmpDaoImpl listEmp Exception->" + e.getMessage());
 		}

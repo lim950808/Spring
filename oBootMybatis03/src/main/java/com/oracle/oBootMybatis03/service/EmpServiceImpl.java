@@ -1,5 +1,6 @@
 package com.oracle.oBootMybatis03.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.oracle.oBootMybatis03.dao.DeptDao;
 import com.oracle.oBootMybatis03.dao.EmpDao;
 import com.oracle.oBootMybatis03.model.Dept;
+import com.oracle.oBootMybatis03.model.DeptVO;
 import com.oracle.oBootMybatis03.model.Emp;
 import com.oracle.oBootMybatis03.model.EmpDept;
 
@@ -95,6 +97,18 @@ public class EmpServiceImpl implements EmpService {
 		empDeptList = ed.listEmpDept();
 		System.out.println("EmpServiceImpl listEmpDept empDeptList.size()->" + empDeptList.size());
 		return empDeptList;
+	}
+
+	@Override
+	public void insertDept(DeptVO deptVO) {
+		System.out.println("EmpServiceImpl insertDept Start...");
+		dd.insertDept(deptVO);
+	}
+
+	@Override
+	public void selListDept(HashMap<String, Object> map) {
+		System.out.println("EmpServiceImpl selListDept Start...");
+		dd.selListDept(map);	
 	}
 	
 }

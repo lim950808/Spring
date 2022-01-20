@@ -7,14 +7,14 @@ import lombok.Setter;
 @Setter
 public class Emp {
 
-	private int empno;			private String ename;
-	private String job;			private int mgr;
-	private String hiredate;	private int sal;
-	private int comm;			private int deptno;
+	private int 	empno;			private String 	ename;
+	private String 	job;			private int 	mgr;
+	private String 	hiredate;		private int 	sal;
+	private int 	comm;			private int 	deptno;
 	
 	//조회용
-	private String search;		private String keyword;
-	private String pageNum;
-	private int start;			private int end;
+	private String 	search;			private String 	keyword;
+	private String 	pageNum;
+	private int 	start;			private int 	end;
 
 }

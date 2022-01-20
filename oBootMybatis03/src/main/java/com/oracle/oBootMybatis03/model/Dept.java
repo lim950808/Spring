@@ -5,9 +5,9 @@ import lombok.Getter;
 @Getter
 public class Dept {
 
-	private int deptno;
-	private String dname;
-	private String loc;
+	private int 	deptno;
+	private String 	dname;
+	private String 	loc;
 	
 	public void setDeptno(int deptno) {
 		if (deptno > 0) this.deptno = deptno;
