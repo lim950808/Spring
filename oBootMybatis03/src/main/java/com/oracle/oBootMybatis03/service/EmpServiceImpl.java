@@ -8,18 +8,22 @@ import org.springframework.stereotype.Service;
 
 import com.oracle.oBootMybatis03.dao.DeptDao;
 import com.oracle.oBootMybatis03.dao.EmpDao;
+import com.oracle.oBootMybatis03.dao.Member1Dao;
 import com.oracle.oBootMybatis03.model.Dept;
 import com.oracle.oBootMybatis03.model.DeptVO;
 import com.oracle.oBootMybatis03.model.Emp;
 import com.oracle.oBootMybatis03.model.EmpDept;
+import com.oracle.oBootMybatis03.model.Member3;
 
 @Service
 public class EmpServiceImpl implements EmpService {
-	@Autowired
-	private EmpDao ed;
 	
 	@Autowired
+	private EmpDao ed;
+	@Autowired
 	private DeptDao dd;
+	@Autowired
+	private Member1Dao md;
 	
 	@Override
 	public int total() {
@@ -110,5 +114,18 @@ public class EmpServiceImpl implements EmpService {
 		System.out.println("EmpServiceImpl selListDept Start...");
 		dd.selListDept(map);	
 	}
+
+	@Override
+	public int memCount(String id) {
+		System.out.println("EmpServiceImpl memCount id->" + id);
+		return md.memCount(id);
+	}
+
+	@Override
+	public List<Member3> listMem(Member3 member3) {
+		System.out.println("EmpServiceImpl listMem Start...");
+		return md.listMem(member3);
+	}
+	
 	
 }

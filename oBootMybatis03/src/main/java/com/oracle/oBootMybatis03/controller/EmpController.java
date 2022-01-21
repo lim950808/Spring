@@ -23,6 +23,7 @@ import com.oracle.oBootMybatis03.model.Dept;
 import com.oracle.oBootMybatis03.model.DeptVO;
 import com.oracle.oBootMybatis03.model.Emp;
 import com.oracle.oBootMybatis03.model.EmpDept;
+import com.oracle.oBootMybatis03.model.Member3;
 import com.oracle.oBootMybatis03.service.EmpService;
 import com.oracle.oBootMybatis03.service.Paging;
 
@@ -214,6 +215,53 @@ public class EmpController {
 		model.addAttribute("deptList", deptLists);
 		
 		return "writeDeptCursor";
+	}
+	
+	//interCeptor 시작화면
+	@RequestMapping(value = "interCeptorForm", method = RequestMethod.GET)
+	public String interCeptorForm(Model model) {
+		System.out.println("interCeptorForm Start...");
+		return "interCeptorForm";
+	}
+	
+	//interCeptor 진행 Test2
+	@RequestMapping(value = "interCeptor")
+	public String interCeptor(String id, Model model) {
+		System.out.println("interCeptor Test Start");
+		System.out.println("interCeptor id->" + id);
+		int memCnt = es.memCount(id);
+		
+		System.out.println("memCnt->" + memCnt);
+		//List<MepDept> listEmp = es.listEmp(empDept); User 가져오는 Service
+		//member1의 Count 가져오는 Service 수행
+		//member.setId("kkk");
+		
+		model.addAttribute("id", id);
+		model.addAttribute("memCnt", memCnt);
+		System.out.println("interCeptor Test End");
+		return "interCeptor"; //User 존재하면 User 이용 조회 Page
+	}
+	
+	//SampleInterceptor 내용을 받아 처리
+	@RequestMapping(value = "doMemberWrite", method = RequestMethod.GET)
+	public String doMemberWrite(Model model, HttpServletRequest request) {
+		String ID = (String) request.getSession().getAttribute("ID");
+		System.out.println("doMemberWrite 부터 하세요");
+		model.addAttribute("id", ID);
+		return "doMemberWrite";
+	}
+	
+	//interCeptor 진행 Test
+	@RequestMapping(value = "doMemberList")
+	public String doMemberList(Model model, HttpServletRequest request) {
+		String ID = (String) request.getSession().getAttribute("ID");
+		System.out.println("doMemberList Test Start ID ->" + ID);
+		Member3 member3 = null;
+		//Member3 List Get Service
+		List<Member3> listMem = es.listMem(member3);
+		model.addAttribute("ID", ID);
+		model.addAttribute("listMem", listMem);
+		return "doMemberList"; //User 존재하면 User 이용조회 Page
 	}
 	
 }	

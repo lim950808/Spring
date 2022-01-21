@@ -12,15 +12,14 @@
 		//response.sendRedirect("listEmpDept");
 		//response.sendRedirect("writeDeptIn"); //Procedure VO Test
 		//response.sendRedirect("writeDeptCursor"); //Procedure Cursor Test
-		response.sendRedirect("upLoadFormStart"); //UpLoad Test
-		//response.sendRedirect("members");
+		//response.sendRedirect("upLoadFormStart"); //UpLoad Test
 		//JPA
-		
-		//response.sendRedirect("interCepterForm"); //interCepter 시작
-		//response.sendRedirect("chat");
-		//response.sendRedirect("sendVO3");
-		//response.sendRedirect("listEmpAjax");
-		//response.sendRedirect("listEmpAjax2");
+		//response.sendRedirect("members");
+		//response.sendRedirect("interCeptorForm"); //interCeptor 시작
+		response.sendRedirect("helloText"); //RestController Test(VO) helloText hello sendVO3
+		//response.sendRedirect("listEmpAjax"); //Ajax --> getDeptName listEmpAjax
+		//response.sendRedirect("listEmpAjax2"); //Ajax --> getDeptName listEmpAjax
+		//response.sendRedirect("chat"); 
 	%>
 </body>
 </html>
