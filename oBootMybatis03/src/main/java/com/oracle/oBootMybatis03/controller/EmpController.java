@@ -264,4 +264,16 @@ public class EmpController {
 		return "doMemberList"; //User 존재하면 User 이용조회 Page
 	}
 	
+	//Ajax List Test
+	@RequestMapping(value = "listEmpAjax")
+	public String listEmpAjax(Model model) {
+		EmpDept empDept = null;
+		System.out.println("Ajax List Test Start");
+		List<EmpDept> listEmp = es.listEmp(empDept);
+		System.out.println("EmpController listempAjax listEmp.size()->" + listEmp);
+		model.addAttribute("result", "kkk");
+		model.addAttribute("listEmp", listEmp);
+		return "listEmpAjax";
+	}
+	
 }	

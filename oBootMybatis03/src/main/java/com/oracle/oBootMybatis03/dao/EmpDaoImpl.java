@@ -121,4 +121,10 @@ public class EmpDaoImpl implements EmpDao {
 		return empDept;
 	}
 
+	@Override
+	public List<EmpDept> listEmp(EmpDept empDept) {
+		System.out.println("EmpServiceImpl listEmp Start...");
+		return session.selectList("TKlistEmpDept", empDept);
+	}
+
 }

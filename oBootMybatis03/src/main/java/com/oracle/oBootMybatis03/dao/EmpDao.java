@@ -23,5 +23,7 @@ public interface EmpDao {
 
 	List<EmpDept> listEmpDept();
 
+	List<EmpDept> listEmp(EmpDept empDept);
+
 	
 }

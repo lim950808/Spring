@@ -126,6 +126,12 @@ public class EmpServiceImpl implements EmpService {
 		System.out.println("EmpServiceImpl listMem Start...");
 		return md.listMem(member3);
 	}
+
+	@Override
+	public List<EmpDept> listEmp(EmpDept empDept) {
+		System.out.println("EmpServiceImpl listEmp Start...");
+		return ed.listEmp(empDept);
+	}
 	
 	
 }
