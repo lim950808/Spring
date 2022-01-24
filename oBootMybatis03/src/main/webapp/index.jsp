@@ -17,9 +17,9 @@
 		//response.sendRedirect("members");
 		//response.sendRedirect("interCeptorForm"); //interCeptor 시작
 		//response.sendRedirect("sendVO3"); //RestController Test(VO) helloText hello sendVO3
-		response.sendRedirect("listEmpAjax"); //Ajax --> getDeptName listEmpAjax
+		//response.sendRedirect("listEmpAjax"); //Ajax --> getDeptName listEmpAjax
 		//response.sendRedirect("listEmpAjax2"); //Ajax --> getDeptName listEmpAjax
-		//response.sendRedirect("chat"); 
+		response.sendRedirect("chat"); 
 	%>
 </body>
 </html>

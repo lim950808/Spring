@@ -10,4 +10,8 @@
 		ORDER BY 	empno
 	</select>
 	
+	<select id="TKdeptName" parameterType="int" resultType="java.lang.String">
+		SELECT dname FROM dept WHERE deptno = #{deptno}
+	</select>
+	
 </mapper>

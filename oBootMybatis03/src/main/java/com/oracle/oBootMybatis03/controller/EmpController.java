@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.oBootMybatis03.model.Dept;
 import com.oracle.oBootMybatis03.model.DeptVO;
@@ -229,6 +230,7 @@ public class EmpController {
 	public String interCeptor(String id, Model model) {
 		System.out.println("interCeptor Test Start");
 		System.out.println("interCeptor id->" + id);
+		//존재: 1, 비존재: 0
 		int memCnt = es.memCount(id);
 		
 		System.out.println("memCnt->" + memCnt);
@@ -274,6 +276,25 @@ public class EmpController {
 		model.addAttribute("result", "kkk");
 		model.addAttribute("listEmp", listEmp);
 		return "listEmpAjax";
+	}
+	
+	//Ajax Sample 1
+	@RequestMapping(value = "getDeptName", produces = "application/text;charset=UTF-8")
+	@ResponseBody
+	public String getDeptName(int deptno, Model model) {
+		System.out.println("deptno->" + deptno);
+		return es.deptName(deptno); //String --> 부서명
+	}
+	
+	// Ajax  List Test
+	@RequestMapping(value="listEmpAjax2")
+	public String listEmpAjax2(Model model) {
+		EmpDept empDept = null;
+		System.out.println("listEmpAjax2 Start");
+		List<EmpDept> listEmp = es.listEmp(empDept);
+		model.addAttribute("result","kkk");
+		model.addAttribute("listEmp",listEmp);
+		return "listEmpAjax2";
 	}
 	
 }	

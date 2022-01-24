@@ -39,6 +39,6 @@ public interface EmpService {
 
 	List<EmpDept> listEmp(EmpDept empDept);
 
-
+	String deptName(int deptno);
 	
 }

@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.oracle.oBootMybatis03.model.Dept;
+import com.oracle.oBootMybatis03.model.Emp;
 import com.oracle.oBootMybatis03.model.SampleVO;
 import com.oracle.oBootMybatis03.service.EmpService;
-// @Controller + @ResponseBody
+// @Controller + @ResponseBody => @RestController
 @RestController
 public class EmpRestController {
 	@Autowired
@@ -31,11 +32,21 @@ public class EmpRestController {
 		vo.setMno(deptno);
 		return vo;
 	}
-	
+	// http://jsonviewer.stack.hu/
 	@RequestMapping("/sendVO3")
 	public List<Dept> sendVO3() {
 		System.out.println("@RestController sendVO3 START");
 		List<Dept> deptList = es.deptSelect();
 		return deptList;
+	}
+	
+	//empnoDelect
+	@RequestMapping("/empnoDelete")
+	public String empnoDelete(Emp emp) { //empno와 ename이 포함된 emp
+		System.out.println("@RestController empnoDelete START");
+		System.out.println("@RestController empnoDelete emp.getEname()->" + emp.getEname());
+		int delStatus = es.delete(emp.getEmpno()); //emp에서 empno를 get
+		String delstatusStr = Integer.toBinaryString(delStatus);
+		return delstatusStr; //String으로 변환된 값
 	}
 }

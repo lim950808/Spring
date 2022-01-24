@@ -133,5 +133,11 @@ public class EmpServiceImpl implements EmpService {
 		return ed.listEmp(empDept);
 	}
 	
+	@Override
+	public String deptName(int deptno) {
+		System.out.println("EmpServiceImpl deptName Start...");
+		return ed.deptName(deptno);
+	}
+	
 	
 }
